@@ -83,6 +83,7 @@ public class ContactHelper
 
         _db.Add(new Contact { Name = contactName ?? "Placeholder Name", Email = contactEmail ?? "Placeholder Email", PhoneNumber = contactPhoneNumber ?? "Placeholder Phone Number" });
         await _db.SaveChangesAsync();
+        Console.WriteLine("Contact Created!");
         
 
     }
@@ -120,6 +121,7 @@ public class ContactHelper
                     string contactNewName = Console.ReadLine();
                     existingEntity.Name = contactNewName;
                     await _db.SaveChangesAsync();
+                    Console.WriteLine("Name updated");
                     break;
                 case "2":
                     Console.WriteLine("Enter new email:");
@@ -130,6 +132,7 @@ public class ContactHelper
                     }
                     existingEntity.Email = contactNewEmail;
                     await _db.SaveChangesAsync();
+                    Console.WriteLine("Email updated.");
                     break;
                 case "3":
                     Console.WriteLine("Enter a new Phone Number:");
@@ -141,6 +144,7 @@ public class ContactHelper
                     }
                     existingEntity.PhoneNumber = contactNewPhoneNumber;
                     await _db.SaveChangesAsync();
+                    Console.WriteLine("Phone number updated.");
                     break;
                 default:
                     Console.WriteLine("Incorrect input");
@@ -195,7 +199,12 @@ public class ContactHelper
             {
                 Console.WriteLine("Contact doesn't exist. Nothing was deleted.");
             }
-            await _db.SaveChangesAsync();
+            else
+            {
+                await _db.SaveChangesAsync();
+                Console.WriteLine($"Contact with ID {targetId} was deleted");
+                
+            }
         }
        
         
@@ -211,6 +220,7 @@ public class ContactHelper
         else
         {
             await _db.Contacts.ExecuteDeleteAsync();
+            Console.WriteLine("Contacts Deleted.");
         }
     }
 
