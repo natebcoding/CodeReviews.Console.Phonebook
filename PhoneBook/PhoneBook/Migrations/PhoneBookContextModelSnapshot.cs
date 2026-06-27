@@ -8,27 +8,35 @@ using PhoneBook;
 
 namespace PhoneBook.Migrations
 {
-    [DbContext(typeof(CourseDirectory))]
-    partial class CourseDirectoryModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PhoneBookContext))]
+    partial class PhoneBookContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.9");
 
-            modelBuilder.Entity("PhoneBook.Course", b =>
+            modelBuilder.Entity("PhoneBook.Contact", b =>
                 {
-                    b.Property<int>("CourseId")
+                    b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CourseName")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("CourseId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("CourseDir");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ContactId");
+
+                    b.ToTable("Contacts");
                 });
 #pragma warning restore 612, 618
         }

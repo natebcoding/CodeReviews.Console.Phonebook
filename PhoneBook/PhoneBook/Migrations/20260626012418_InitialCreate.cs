@@ -11,16 +11,18 @@ namespace PhoneBook.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CourseDir",
+                name: "Contacts",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(type: "INTEGER", nullable: false)
+                    ContactId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CourseName = table.Column<string>(type: "TEXT", nullable: false)
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseDir", x => x.CourseId);
+                    table.PrimaryKey("PK_Contacts", x => x.ContactId);
                 });
         }
 
@@ -28,7 +30,7 @@ namespace PhoneBook.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CourseDir");
+                name: "Contacts");
         }
     }
 }
